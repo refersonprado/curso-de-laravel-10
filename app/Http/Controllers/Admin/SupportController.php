@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-    public function index(Support $support)
-    {
+    public function index(Support $support) {
         $supports = $support->all();
         return view('admin/supports/index', compact('supports'));
+    }
+
+    public function show(string|int $id) {
+        if(!$support = Support::find($id)) {
+            return back();
+        }
+
+        return view('admin/supports/show', compact('support'));
     }
 
     public function create() {

@@ -27,3 +27,5 @@ Route::put('/supports/{id}', [SupportController::class, 'update'])->name('suppor
 
 Route::post('/supports', [SupportController::class, 'store'])->name('supports/store');
 
+Route::delete('/supports/{id}', [SupportController::class, 'destroy'])->name('supports/destroy');
+

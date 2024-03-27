@@ -2,55 +2,39 @@
 
 namespace App\Services;
 
+use App\DTO\CreateSupportDTO;
+use App\DTO\UpdateSupportDTO;
+use App\Repositories\SupportRepository;
 use stdClass;
 
 class SupportService 
 {
-    protected $repository;
-
-    public function __construct() {}
-
+    public function __construct(
+        protected SupportRepository $repository,
+    ) { }
 
     // Metodos
 
-    public function getAll(string $filter) : array 
+    public function getAll(string $filter = null) : array 
     {
-        $this->repository->getAll($filter);
+       return $this->repository->getAll($filter);
     }
 
-    public function findOne(string $id) : stdClass
+    public function findOne(string $id) : stdClass | null
     {
-        $this->repository->findOne($id);
+        return $this->repository->findOne($id);
     }
 
     public function delete(string $id) : void 
     {
-        $this->repository->detele($id);
+        $this->repository->delete($id);
     }
 
-    public function new(
-        string $subject,
-        string $body,
-        string $status
-    ) : stdClass {
-        $this->repository->new(
-            $subject,
-            $body,
-            $status
-        );
+    public function new(CreateSupportDTO $dto) : stdClass {
+        return $this->repository->new($dto);
     }
 
-    public function update(
-        string $id,
-        string $subject,
-        string $body,
-        string $status
-    ) : stdClass | null{
-        $this->repository->update(
-            $id,
-            $subject,
-            $body,
-            $status
-        );
+    public function update(UpdateSupportDTO $dto) : stdClass | null {
+        return $this->repository->update($dto);
     }
 }

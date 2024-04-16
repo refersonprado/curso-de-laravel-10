@@ -68,4 +68,8 @@ class PaginationPresenter implements PaginationInterface
 
         return $response;
     }
+
+    public function totalPerPage(): int {
+        return $this->paginator->count();
+    }
 }

@@ -15,4 +15,5 @@ interface PaginationInterface
     public function currentPage() : int;
     public function getNumberNextPage() : int;
     public function getNumberPreviousPage() : int;
+    public function totalPerPage() : int;
 }

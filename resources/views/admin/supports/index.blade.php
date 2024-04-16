@@ -1,4 +1,5 @@
 <h1>Lista dos suportes</h1>
+<p>Quantidade de suportes: {{$supports->totalPerPage()}}</p>
 
 <a href="{{ route('supports/create') }}">Criar Dúvida</a>
 

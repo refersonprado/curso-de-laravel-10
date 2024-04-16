@@ -27,7 +27,7 @@ class SupportEloquentORM implements SupportRepository
                                 $query->where('subject', $filter);
                                 $query->orWhere('body', 'like', "%{$filter}%");
                             }
-                        })
+                        })->orderBy('created_at', 'desc')
                     ->paginate($totalPerPage, ['*'], 'page', $page);
         return new PaginationPresenter($result);
     }

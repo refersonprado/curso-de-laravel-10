@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-
     public function __construct(
         protected SupportService $service 
     ) {}
@@ -27,7 +26,7 @@ class SupportController extends Controller
 
         $filters = ['filter' => $request->get('filter', '')];
 
-        return view('admin/supports/index', compact('supports', 'filters'));
+        return view('admin/supports/index',  compact('supports', 'filters'));
     }
 
     public function show(string $id)

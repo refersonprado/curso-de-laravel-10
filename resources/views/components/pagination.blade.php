@@ -17,7 +17,7 @@
                 {!! __('pagination.previous') !!}
             </a>
         @endif
-
+            <p>{{$paginator->currentPage()}}</p>
         {{-- Next Page Link --}}
         @if (!$paginator->isLastPage())
             <a href="?page={{ $paginator->getNumberNextPage() }}{{ $queryParams }}" rel="next"

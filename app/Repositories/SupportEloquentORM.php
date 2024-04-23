@@ -17,20 +17,28 @@ class SupportEloquentORM implements SupportRepository
     public function paginate(
         int $page = 1, 
         int $totalPerPage = 15, 
-        string $filter = null
-        ): PaginationInterface
+        string $filter = null,
+        string $status = null,
+    ): PaginationInterface
     {
-        $result = $this->model
+        $query = $this->model
                     ->where(
                         function ($query) use ($filter) {
                             if ($filter) {
                                 $query->where('subject', $filter);
                                 $query->orWhere('body', 'like', "%{$filter}%");
                             }
-                        })->orderBy('created_at', 'desc')
+                        });
+        
+        if ($status) {
+            $query->where('status', $status);
+        }
+    
+        $result = $query->orderBy('created_at', 'desc')
                     ->paginate($totalPerPage, ['*'], 'page', $page);
         return new PaginationPresenter($result);
     }
+    
     
     public function getAll(string $filter = null) : array {
         return $this->model

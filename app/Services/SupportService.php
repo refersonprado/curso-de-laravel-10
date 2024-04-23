@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
+use App\Enums\SupportStatus;
 use App\Repositories\PaginationInterface;
 use App\Repositories\SupportRepository;
+use Illuminate\Validation\Rules\Enum;
 use stdClass;
 
 class SupportService
@@ -20,14 +22,17 @@ class SupportService
     public function paginate(
         int $page = 1,
         int $totalPerPage = 15,
-        string $filter = null
+        string $filter = null,
+        string $status = null,
     ): PaginationInterface {
         return $this->repository->paginate(
             page: $page,
             totalPerPage: $totalPerPage,
-            filter: $filter
+            filter: $filter,
+            status: $status, 
         );
     }
+    
 
     public function getAll(string $filter = null): array
     {

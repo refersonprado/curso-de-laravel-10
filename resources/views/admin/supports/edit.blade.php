@@ -4,5 +4,5 @@
 
 <form action="{{route('supports/update', $support->id)}}" method="POST">
   	@method('PUT')
-	@include('admin.supports.partials.form')
+	@include('admin.supports.partials.form.form')
 </form>
